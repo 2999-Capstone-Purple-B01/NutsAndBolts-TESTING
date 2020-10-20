@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <title></title>
+    </head>
+    <body>
+        <div>
+            <a href="home.html" class="hov">
+                <img class="mainLogo" src="img/nutsandbolts.jpg" alt="Nuts and Bolts Logo">
+            </a>
+            <ul class="fix"> 
+                <li>
+                    <a href="index.html" class="hov">
+                        <img class="logo" src="img/logo.jpg" alt="Website's Logo">
+                    </a>
+                </li>
+                <li>
+                    <a href="home.html" class="hov">Home</a>
+                </li>
+                <li>
+                    <a href="about.html" class="hov">About</a>
+                </li>
+                <li>
+                    <a href ="contact.html" class="hov">Contact</a>
+                </li>
+                <li>
+                    <a href ="faq.html" class="active">FAQ</a>
+                </li>
+                <li id="right">
+                    <a href="login.html" class="hov">Login</a>
+                </li>
+                
+            </ul>
+        </div>
+
+        <div class="questionsContainer">
+                <p class="questionsStyling questionsFontStyle">Q: What are Nutz and Boltz store hours?<br>
+                    <br>
+                    A: Hours of operation are Mon-Fri: 7:00am to 7:00pm; Saturday: 8:00am to 6:00pm; and Sunday: 10:00am to 5:00pm. 
+                </p>
+                <p class="questionsStyling questionsFontStyle">Q: My order was damaged/wrong, what should I do?<br>
+                    <br>
+                    A: If we made an error with your order, we sincerely apologize. 
+					Please call a Customer Service Representative at 1-800-443-501 and we will work to get it taken care of as quickly as possible. 
+                </p>
+                <p class="questionsStyling questionsFontStyle">Q: What is the status of my order?<br>
+                    <br>
+                    A: Please log into your account to review your order status.
+                </p>
+                <p class="questionsStyling questionsFontStyle">Q: How do I cancel or change my order?<br>
+                    <br>
+                    A: We can cancel an order until it ships, our system does not allow for changes to an order once it is placed. 
+                </p>
+                <p class="questionsStyling questionsFontStyle">Q: How do I return an item?<br>
+                    <br>
+                    A: You may return your purchase to Nutz and Boltz within 30 days. 
+					If you have a receipt, we will refund the amount of the item(s) in the same way as your purchase. 
+					Cash purchases will receive cash. Credit card purchases will be credited back to your credit card account. 
+                </p>
+        </div>
+        <!--
+            Code for sticky navigation bar, removes class "sticky" on scroll down
+        -->
+        <script type="text/javascript">
+
+            window.onscroll = function() {myFunction()};
+            
+            var nav = document.getElementById("myNav");
+            var sticky = nav.offsetTop;
+            
+            function myFunction() {
+              if (window.pageYOffset > sticky) {
+                nav.classList.add("sticky");
+              } else {
+                nav.classList.remove("sticky");
+              }
+            }
+            </script>
+
+    </body>
+</html>
