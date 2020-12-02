@@ -1,35 +1,47 @@
 <?php
 /* Attempt to connect to MySQL database */
-$link = mysqli_connect("127.0.0.1", "root", "Root@123456789", "ServerDB");
+ob_start();                                                                                                                                                                                   
+$host="localhost"; // Host name                                                                                                                                                               
+$username="root"; // Mysql username                                                                                                                                                        
+$password="Root@123456789"; // Mysql password                                                                                                                                                    
+$db_name="cart1"; // Database name                                                                                                                                                        
+$tbl_name="users"; // Table name
 
-//check connection
-if($link === false){
-  die("ERROR: Could not connect. " . mysqli_connect_error());
-}
+// Connect to server and select databse.
+$dbhandle = mysqli_connect("$host", "$username", "$password")or die("cannot connect");
+mysqli_select_db($dbhandle, $db_name)or die("cannot select DB");
 
-$user = mysqli_real_escape_string($link, $_REQUEST['username']);
-$pass = mysqli_real_escape_string($link, $_REQUEST['password']);
+$username=$_POST['username'];
+$password=$_POST['password'];
 
-$sql = "INSERT INTO Customer_info (username, password, timestamp) VALUES ('$user','$pass', now())";
+// To protect MySQL injection (more detail about MySQL injection)
+//$username = stripslashes($username);
+//$password = stripslashes($password);
+//$username = mysqli_real_escape_string($username);
+//$password = mysqli_real_escape_string($password);
 
-if(mysqli_query($link, $sql)){
-  echo "Records added successfully."."<br>";
-} else{
-  echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-}
+$sql="SELECT * FROM $tbl_name WHERE username='$username' and password='$password'";
+$result=mysqli_query($dbhandle, $sql);
 
-$sql1 = "SELECT timestamp FROM Customer_info ORDER BY id DESC LIMIT 1";
-$result = $link->query($sql1);
+// Mysql_num_row is counting table row
+$count=mysqli_num_rows($result);
 
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "Timestamp: " . $row["timestamp"]. "<br>";
+// If result matched $username and $password, table row must be 1 row
+
+if($count==1){
+  // Register $username, $password and redirect to file "login_success.php"
+  $_SESSION["username"]=$username;
+  $_SESSION["password"]=$password;	
+	
+  header("location: login_success.php");
   }
-} else {
-  echo "0 results";
-}
+else {
+  echo "Wrong Username or Password";
+  //header ("location: login.php");
+  }
+  
+ob_end_flush();
 
-// Close connection
-mysqli_close($link);
 ?>
+
+
